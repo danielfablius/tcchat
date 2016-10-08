@@ -1,0 +1,65 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'c:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'c:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'i',
+1 verbose cli   'jquery',
+1 verbose cli   '--save' ]
+2 info using npm@2.15.8
+3 info using node@v4.4.7
+4 verbose install initial load of c:\xampp\htdocs\tchat\package.json
+5 warn package.json tchat@0.0.1 No README data
+6 verbose installManyTop reading scoped package data from c:\xampp\htdocs\tchat\node_modules\express\package.json
+7 verbose installManyTop reading scoped package data from c:\xampp\htdocs\tchat\node_modules\socket.io\package.json
+8 verbose readDependencies loading dependencies from c:\xampp\htdocs\tchat\package.json
+9 silly cache add args [ 'jquery', null ]
+10 verbose cache add spec jquery
+11 silly cache add parsed spec Result {
+11 silly cache add   raw: 'jquery',
+11 silly cache add   scope: null,
+11 silly cache add   name: 'jquery',
+11 silly cache add   rawSpec: '',
+11 silly cache add   spec: 'latest',
+11 silly cache add   type: 'tag' }
+12 silly addNamed jquery@latest
+13 verbose addNamed "latest" is being treated as a dist-tag for jquery
+14 info addNameTag [ 'jquery', 'latest' ]
+15 silly mapToRegistry name jquery
+16 silly mapToRegistry using default registry
+17 silly mapToRegistry registry https://registry.npmjs.org/
+18 silly mapToRegistry data Result {
+18 silly mapToRegistry   raw: 'jquery',
+18 silly mapToRegistry   scope: null,
+18 silly mapToRegistry   name: 'jquery',
+18 silly mapToRegistry   rawSpec: '',
+18 silly mapToRegistry   spec: 'latest',
+18 silly mapToRegistry   type: 'tag' }
+19 silly mapToRegistry uri https://registry.npmjs.org/jquery
+20 verbose addNameTag registry:https://registry.npmjs.org/jquery not in flight; fetching
+21 verbose request uri https://registry.npmjs.org/jquery
+22 verbose request no auth needed
+23 info attempt registry request try #1 at 8:59:49 AM
+24 verbose request id 66ac21199d316478
+25 http request GET https://registry.npmjs.org/jquery
+26 info retry will retry, error on last attempt: Error: unable to verify the first certificate
+27 info attempt registry request try #2 at 8:59:59 AM
+28 http request GET https://registry.npmjs.org/jquery
+29 info retry will retry, error on last attempt: Error: unable to verify the first certificate
+30 info attempt registry request try #3 at 9:00:59 AM
+31 http request GET https://registry.npmjs.org/jquery
+32 verbose stack Error: unable to verify the first certificate
+32 verbose stack     at Error (native)
+32 verbose stack     at TLSSocket.<anonymous> (_tls_wrap.js:1017:38)
+32 verbose stack     at emitNone (events.js:67:13)
+32 verbose stack     at TLSSocket.emit (events.js:166:7)
+32 verbose stack     at TLSSocket._init.ssl.onclienthello.ssl.oncertcb.TLSSocket._finishInit (_tls_wrap.js:582:8)
+32 verbose stack     at TLSWrap.ssl.onclienthello.ssl.oncertcb.ssl.onnewsession.ssl.onhandshakedone (_tls_wrap.js:424:38)
+33 verbose cwd c:\xampp\htdocs\tchat
+34 error Windows_NT 6.2.9200
+35 error argv "c:\\Program Files\\nodejs\\node.exe" "c:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "i" "jquery" "--save"
+36 error node v4.4.7
+37 error npm  v2.15.8
+38 error code UNABLE_TO_VERIFY_LEAF_SIGNATURE
+39 error unable to verify the first certificate
+40 error If you need help, you may report this error at:
+40 error     <https://github.com/npm/npm/issues>
+41 verbose exit [ 1, true ]
