@@ -39,17 +39,32 @@ io.on('connection', function(socket){
   console.log("waitinglist:"+waiting_rooms)
 
   if(waiting_rooms.length > 1){
+
     num = Math.floor((Math.random() * waiting_rooms.length));
     p1 = waiting_rooms[num]
     waiting_rooms.splice(num,1)
     console.log(num,waiting_rooms.length)
+
     num = Math.floor((Math.random() * waiting_rooms.length));
     p2 = waiting_rooms[num]
     waiting_rooms.splice(num,1)
     console.log(num,waiting_rooms.length)
+
     d = new Date()
     room_id = "_"+d.getTime()
     rooms[room_id] = {p1:p1,p2:p2}
+
+
+    if(io.sockets.connected[p1]) { 
+      io.sockets.connected[p1].emit('paired',p2) 
+    }
+    if(io.sockets.connected[p2]) {
+      io.sockets.connected[p2].emit('paired',p1)
+    }
+
+    io.sockets.connected[p1].emit('chatMessage', 'System', 'You are connected')
+    io.sockets.connected[p2].emit('chatMessage', 'System', 'You are connected')
+
     if(io.sockets.connected[p1])io.sockets.connected[p1].emit('rooms_join',{room_id:room_id})
     if(io.sockets.connected[p2])io.sockets.connected[p2].emit('rooms_join',{room_id:room_id})
 
@@ -95,11 +110,10 @@ io.on('connection', function(socket){
     io.emit('chatMessage', from, msg);  // emit ke semua user
   });
 
-  socket.on('sendToUser', function(sessionId, from, msg){
+  socket.on('sendToUser', function(sessionId, pairedId, from, msg){
     console.info('Send msg=' + msg + " to id=" + clients[0].id)
-    io.sockets.connected[clients[0].id].emit('sendToUser', from, msg)
-    if (clients[0].id != sessionId)
-      io.sockets.connected[sessionId].emit('sendToUser', from, msg)
+    io.sockets.connected[sessionId].emit('sendToUser', from, msg)
+    io.sockets.connected[pairedId].emit('sendToUser', from, msg)
   })
 
   // socket.on('notifyUser', function(user){
@@ -107,7 +121,7 @@ io.on('connection', function(socket){
   // });
 });
  
-// Listen application request on port 3000
-http.listen(3000, function(){
-  console.log('listening on *:3000');
+// Listen application request on port 3030
+http.listen(3030, function(){
+  console.log('listening on *:3030');
 });

@@ -7,7 +7,8 @@ function submitfunction(){
   var message = $('#m').val()
   if(message != '') {
   // socket.emit('chatMessage', from, message);
-  socket.emit('sendToUser', sessionId, from, message)
+  if (typeof pairedId !== 'undefined')
+    socket.emit('sendToUser', sessionId, pairedId, from, message)
 }
 
 $('#m').val('').focus();
@@ -21,6 +22,10 @@ $('#m').val('').focus();
 
 socket.on('rooms_join',function(message){
   console.log(socket.io.engine.id, message)
+})
+
+socket.on('paired', function(id) {
+    pairedId = id
 })
 
 socket.on('connect',function(message){
@@ -52,17 +57,20 @@ socket.on('chatMessage', function(from, msg){
 //   }
 //   setTimeout(function(){ $('#notifyUser').text(''); }, 10000);;
 // });
+
 $(document).ready(function(){
   // push socket ke cache
   var name = makeid()
   $('#user').val(name)
-  socket.emit('chatMessage', 'System', '<b>' + name + '</b> has joined the discussion')
+  // socket.emit('chatMessage', 'System', '<b>' + name + '</b> has joined the discussion')
+  // notif paired client
+  // socket.emit('notifPaired', pairedId, 'System', '<b>' + name + '</b> has joined the discussion')
 });
 
 function makeid() {
   // ganti jadi input user menggunakan sweetalert biar so sweet :3
   // http://t4t5.github.io/sweetalert/
   // minta masukkan username
-  var text = prompt("input usename");
+  var text = prompt("input username");
   return text;
 }
