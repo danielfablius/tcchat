@@ -33,14 +33,14 @@ socket.on('message', function(message){
 
 socket.on('sendToUser', function(from, msg) {
   var me = $('#user').val()
-  var color = (from == me) ? 'green' : '#009afd'
+  var color = (from == me) ? 'white' : '#fdff63';
   var from = (from == me) ? 'Me' : from
   $('#messages').append('<li><b style="color:' + color + '">' + from + '</b>: ' + msg + '</li>')
 })
 
 socket.on('chatMessage', function(from, msg){
   var me = $('#user').val()
-  var color = (from == me) ? 'green' : '#009afd'
+  var color = (from == me) ? 'white' : '#fdff63'
   var from = (from == me) ? 'Me' : from
   $('#messages').append('<li><b style="color:' + color + '">' + from + '</b>: ' + msg + '</li>')
 });
@@ -63,11 +63,6 @@ function makeid() {
   // ganti jadi input user menggunakan sweetalert biar so sweet :3
   // http://t4t5.github.io/sweetalert/
   // minta masukkan username
-  var text = ""
-  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
- 
-  for( var i=0; i < 5; i++ ) {
-    text += possible.charAt(Math.floor(Math.random() * possible.length))
-  }
+  var text = prompt("input usename");
   return text;
 }
